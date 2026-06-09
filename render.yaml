@@ -1,8 +1,4 @@
 services:
-  - type: web
+  - type: static
     name: resume-website
-    env: static
     staticPublishPath: ./
-    routes:
-      - path: /*
-        destination: /resume.html
