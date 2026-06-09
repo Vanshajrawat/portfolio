@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vanshaj Rawat — AI/ML Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080c14;
+    --surface: #0d1424;
+    --surface2: #111d30;
+    --cyan: #00e5ff;
+    --cyan-dim: #00b8d4;
+    --blue: #2979ff;
+    --violet: #7c4dff;
+    --text: #e8f0fe;
+    --muted: #7986a3;
+    --border: rgba(0,229,255,0.12);
+    --glow: 0 0 24px rgba(0,229,255,0.18);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  a { color: var(--cyan); text-decoration: none; transition: opacity 0.2s; }
+  a:hover { opacity: 0.75; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 48px;
+    background: rgba(8,12,20,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px; font-weight: 700;
+    color: var(--cyan); letter-spacing: 0.05em;
+  }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a {
+    font-size: 13px; font-weight: 500; color: var(--muted);
+    letter-spacing: 0.06em; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); opacity: 1; }
+
+  /* ── HERO ── */
+  #hero {
+    position: relative; min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden; padding-top: 80px;
+  }
+  #neural-canvas {
+    position: absolute; inset: 0; opacity: 0.55;
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    text-align: center; max-width: 760px; padding: 0 24px;
+  }
+  .hero-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; font-weight: 500;
+    color: var(--cyan); letter-spacing: 0.2em; text-transform: uppercase;
+    margin-bottom: 20px;
+    display: inline-flex; align-items: center; gap: 10px;
+  }
+  .hero-eyebrow::before, .hero-eyebrow::after {
+    content: ''; display: block; width: 32px; height: 1px; background: var(--cyan);
+    opacity: 0.5;
+  }
+  h1 {
+    font-size: clamp(40px, 7vw, 80px);
+    font-weight: 700; letter-spacing: -0.03em; line-height: 1.05;
+    margin-bottom: 20px;
+  }
+  h1 span { color: var(--cyan); }
+  .hero-tagline {
+    font-size: clamp(15px, 2vw, 19px); color: var(--muted);
+    max-width: 540px; margin: 0 auto 36px;
+    font-weight: 400; line-height: 1.65;
+  }
+  .hero-cta {
+    display: inline-flex; gap: 14px; flex-wrap: wrap; justify-content: center;
+  }
+  .btn {
+    padding: 12px 28px; border-radius: 6px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 14px; font-weight: 600; letter-spacing: 0.03em;
+    cursor: pointer; border: none; transition: all 0.2s;
+  }
+  .btn-primary {
+    background: var(--cyan); color: var(--bg);
+  }
+  .btn-primary:hover { background: #33ebff; opacity: 1; transform: translateY(-2px); box-shadow: var(--glow); }
+  .btn-ghost {
+    background: transparent; color: var(--cyan);
+    border: 1.5px solid rgba(0,229,255,0.4);
+  }
+  .btn-ghost:hover { border-color: var(--cyan); background: rgba(0,229,255,0.07); opacity: 1; transform: translateY(-2px); }
+  .hero-stats {
+    display: flex; justify-content: center; gap: 48px;
+    margin-top: 64px; padding-top: 48px;
+    border-top: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 28px; font-weight: 700; color: var(--cyan);
+    display: block; line-height: 1;
+  }
+  .stat-label {
+    font-size: 12px; color: var(--muted); margin-top: 6px;
+    letter-spacing: 0.08em; text-transform: uppercase;
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 96px 0; }
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 700; color: var(--cyan);
+    letter-spacing: 0.25em; text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-size: clamp(24px, 4vw, 40px); font-weight: 700;
+    letter-spacing: -0.02em; margin-bottom: 48px; line-height: 1.2;
+  }
+  .section-title span { color: var(--cyan); }
+
+  /* ── SKILLS ── */
+  #skills { background: var(--surface); }
+  .skills-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  .skill-card {
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: 12px; padding: 28px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .skill-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--cyan), var(--blue));
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .skill-card:hover { border-color: rgba(0,229,255,0.35); box-shadow: var(--glow); }
+  .skill-card:hover::before { opacity: 1; }
+  .skill-card-icon {
+    font-size: 22px; margin-bottom: 14px;
+  }
+  .skill-card-title {
+    font-size: 13px; font-weight: 700; color: var(--cyan);
+    letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 14px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 500;
+    background: rgba(0,229,255,0.08); color: var(--cyan-dim);
+    border: 1px solid rgba(0,229,255,0.15); border-radius: 4px;
+    padding: 4px 9px; letter-spacing: 0.04em;
+  }
+
+  /* ── PROJECTS ── */
+  .projects-list { display: flex; flex-direction: column; gap: 28px; }
+  .project-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 14px; padding: 36px;
+    display: grid; grid-template-columns: 1fr auto;
+    gap: 24px; align-items: start;
+    transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  }
+  .project-card:hover {
+    border-color: rgba(0,229,255,0.3);
+    transform: translateY(-3px); box-shadow: var(--glow);
+  }
+  .project-meta {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 10px;
+  }
+  .project-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; padding: 3px 9px; border-radius: 3px;
+  }
+  .badge-cv { background: rgba(0,229,255,0.12); color: var(--cyan); border: 1px solid rgba(0,229,255,0.25); }
+  .badge-rl { background: rgba(124,77,255,0.15); color: #b388ff; border: 1px solid rgba(124,77,255,0.3); }
+  .badge-ml { background: rgba(41,121,255,0.15); color: #82b1ff; border: 1px solid rgba(41,121,255,0.3); }
+  .project-name {
+    font-size: 22px; font-weight: 700; margin-bottom: 8px;
+    letter-spacing: -0.02em;
+  }
+  .project-stack {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; color: var(--muted); margin-bottom: 16px;
+    letter-spacing: 0.04em;
+  }
+  .project-bullets { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+  .project-bullets li {
+    font-size: 14px; color: #aab4c8; padding-left: 18px; position: relative; line-height: 1.6;
+  }
+  .project-bullets li::before {
+    content: '▸'; position: absolute; left: 0; color: var(--cyan); font-size: 10px; top: 3px;
+  }
+  .project-link-area {
+    display: flex; flex-direction: column; align-items: flex-end; gap: 12px;
+  }
+  .project-link {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 600; color: var(--cyan);
+    border: 1px solid rgba(0,229,255,0.25); border-radius: 5px;
+    padding: 7px 14px; white-space: nowrap;
+    display: inline-flex; align-items: center; gap: 6px;
+    transition: all 0.2s;
+  }
+  .project-link:hover { background: rgba(0,229,255,0.1); border-color: var(--cyan); opacity: 1; }
+  .project-highlight {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; color: var(--muted); text-align: right; line-height: 1.6;
+    max-width: 160px;
+  }
+  .project-highlight strong { color: var(--cyan); display: block; font-size: 18px; font-weight: 700; }
+
+  /* ── EDUCATION & CERTS ── */
+  #education { background: var(--surface); }
+  .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .edu-card, .cert-card {
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: 12px; padding: 28px;
+    transition: border-color 0.3s;
+  }
+  .edu-card:hover, .cert-card:hover { border-color: rgba(0,229,255,0.3); }
+  .edu-degree { font-size: 17px; font-weight: 700; margin-bottom: 6px; }
+  .edu-school { font-size: 14px; color: var(--cyan); margin-bottom: 6px; font-weight: 500; }
+  .edu-period {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; color: var(--muted); letter-spacing: 0.06em;
+  }
+  .cert-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+  .cert-org { font-size: 13px; color: var(--muted); }
+  .cert-icon { font-size: 20px; margin-bottom: 12px; }
+
+  /* ── CONTACT ── */
+  #contact { text-align: center; }
+  .contact-grid {
+    display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;
+    margin-top: 40px;
+  }
+  .contact-chip {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 50px; padding: 12px 22px;
+    font-size: 14px; font-weight: 500; color: var(--text);
+    transition: all 0.2s;
+  }
+  .contact-chip:hover { border-color: rgba(0,229,255,0.4); background: var(--surface2); opacity: 1; }
+  .contact-chip-icon { font-size: 16px; }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 28px 32px; text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; color: var(--muted); letter-spacing: 0.06em;
+  }
+  footer span { color: var(--cyan); }
+
+  /* ── SCROLL FADE ── */
+  .fade-in { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
+  .fade-in.visible { opacity: 1; transform: none; }
+
+  @media (max-width: 700px) {
+    nav { padding: 14px 20px; }
+    .nav-links { gap: 18px; }
+    .project-card { grid-template-columns: 1fr; }
+    .project-link-area { flex-direction: row; align-items: center; }
+    .edu-grid { grid-template-columns: 1fr; }
+    .hero-stats { gap: 28px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">VR.ai</div>
+  <div class="nav-links">
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#education">Education</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <canvas id="neural-canvas"></canvas>
+  <div class="hero-content">
+    <div class="hero-eyebrow">AI / ML Engineer</div>
+    <h1>Vanshaj <span>Rawat</span></h1>
+    <p class="hero-tagline">
+      Building intelligent systems at the intersection of computer vision, deep learning, and real-time inference. Turning research into deployable AI.
+    </p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">View Projects</a>
+      <a href="mailto:vanshajxrawat@gmail.com" class="btn btn-ghost">Get In Touch</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num">87ms</span>
+        <span class="stat-label">DeepShield Latency</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">100%</span>
+        <span class="stat-label">RL Agent Success Rate</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">2</span>
+        <span class="stat-label">Deployed Projects</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">ICAMC</span>
+        <span class="stat-label">2026 Conference</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="section-label fade-in">Technical Arsenal</div>
+    <h2 class="section-title fade-in">Built to <span>ship</span> AI.</h2>
+    <div class="skills-grid">
+      <div class="skill-card fade-in">
+        <div class="skill-card-icon">🧠</div>
+        <div class="skill-card-title">AI / ML Frameworks</div>
+        <div class="skill-tags">
+          <span class="tag">PyTorch</span>
+          <span class="tag">Scikit-learn</span>
+          <span class="tag">OpenCV</span>
+          <span class="tag">MediaPipe</span>
+          <span class="tag">LibROSA</span>
+          <span class="tag">NumPy</span>
+          <span class="tag">Pandas</span>
+          <span class="tag">Matplotlib</span>
+        </div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-card-icon">⚡</div>
+        <div class="skill-card-title">Generative AI & LLMs</div>
+        <div class="skill-tags">
+          <span class="tag">Hugging Face</span>
+          <span class="tag">Transformers</span>
+          <span class="tag">MarianMT</span>
+          <span class="tag">LangChain</span>
+          <span class="tag">RAG</span>
+          <span class="tag">Google Gemini</span>
+        </div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-card-icon">🔬</div>
+        <div class="skill-card-title">Domains</div>
+        <div class="skill-tags">
+          <span class="tag">Computer Vision</span>
+          <span class="tag">Deep Learning</span>
+          <span class="tag">Reinforcement Learning</span>
+          <span class="tag">NLP</span>
+          <span class="tag">Deepfake Detection</span>
+          <span class="tag">Multimodal AI</span>
+        </div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-card-icon">🛠️</div>
+        <div class="skill-card-title">Languages & Tools</div>
+        <div class="skill-tags">
+          <span class="tag">Python</span>
+          <span class="tag">C++</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">TorchScript</span>
+          <span class="tag">Gymnasium</span>
+          <span class="tag">Streamlit</span>
+          <span class="tag">Git</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="section-label fade-in">Work</div>
+    <h2 class="section-title fade-in">Projects that <span>run in prod.</span></h2>
+    <div class="projects-list">
+
+      <!-- DeepShield -->
+      <div class="project-card fade-in">
+        <div>
+          <div class="project-meta">
+            <span class="project-badge badge-cv">Computer Vision</span>
+            <span class="project-badge badge-cv" style="background:rgba(41,121,255,0.1);color:#82b1ff;border-color:rgba(41,121,255,0.25)">ICAMC 2026</span>
+          </div>
+          <div class="project-name">DeepShield</div>
+          <div class="project-stack">Python · OpenCV · MediaPipe · PyTorch · LibROSA · NumPy</div>
+          <ul class="project-bullets">
+            <li>Real-time deepfake detection analyzing lip-sync, pose dynamics, and phonetic-visual consistency simultaneously.</li>
+            <li>Three-module fusion pipeline: MediaPipe facial landmarks + LibROSA audio features + custom PyTorch fusion model.</li>
+            <li>Optimized with ThreadPoolExecutor, frame downsampling, and TorchScript — achieving 87ms latency vs 210ms (MesoNet) and 380ms (Xception).</li>
+          </ul>
+        </div>
+        <div class="project-link-area">
+          <a href="https://deepshield-deployed.onrender.com/" target="_blank" class="project-link">↗ Live Demo</a>
+          <div class="project-highlight">
+            <strong>87ms</strong>
+            inference latency
+          </div>
+        </div>
+      </div>
+
+      <!-- Taxi RL -->
+      <div class="project-card fade-in">
+        <div>
+          <div class="project-meta">
+            <span class="project-badge badge-rl">Reinforcement Learning</span>
+          </div>
+          <div class="project-name">Taxi Route Optimization</div>
+          <div class="project-stack">Python · Gymnasium · Q-Learning · NumPy · Matplotlib</div>
+          <ul class="project-bullets">
+            <li>Tabular Q-Learning agent solving Gymnasium Taxi-v3 from scratch; 100% success rate and avg reward of +7.6 across 100 unseen episodes.</li>
+            <li>500-state Q-table with ε-greedy exploration, Bellman equation updates, α=0.1, γ=0.99 — converges in under 5,000 episodes (~9 seconds).</li>
+            <li>Interactive dark-mode dashboard with live state explorer, episode replay, Q-value heatmaps, and learning curve visualizations.</li>
+          </ul>
+        </div>
+        <div class="project-link-area">
+          <a href="https://taxi-route-optimization-with.onrender.com" target="_blank" class="project-link">↗ Live Demo</a>
+          <div class="project-highlight">
+            <strong>+7.6</strong>
+            avg reward
+          </div>
+        </div>
+      </div>
+
+      <!-- Disease Prediction -->
+      <div class="project-card fade-in">
+        <div>
+          <div class="project-meta">
+            <span class="project-badge badge-ml">Machine Learning</span>
+          </div>
+          <div class="project-name">Multiple Disease Prediction</div>
+          <div class="project-stack">Python · Scikit-learn · Streamlit · SVM · Logistic Regression · Pickle</div>
+          <ul class="project-bullets">
+            <li>Multi-model clinical web app integrating three independent ML models — diabetes (SVM), heart disease (LR), and Parkinson's (SVM) — in a single Streamlit interface.</li>
+            <li>Serialized trained Scikit-learn models with Pickle; real-time predictions across multiple clinical features with zero page reloads.</li>
+          </ul>
+        </div>
+        <div class="project-link-area">
+          <a href="https://github.com/Vanshajrawat/public_ml_web_app" target="_blank" class="project-link">↗ GitHub</a>
+          <div class="project-highlight">
+            <strong>3</strong>
+            disease models
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="container">
+    <div class="section-label fade-in">Background</div>
+    <h2 class="section-title fade-in">Education & <span>Certifications</span></h2>
+    <div class="edu-grid">
+      <div class="edu-card fade-in">
+        <div class="edu-degree">B.Tech — Artificial Intelligence & Data Science</div>
+        <div class="edu-school">Galgotias University, Greater Noida</div>
+        <div class="edu-period">OCT 2022 — PRESENT</div>
+      </div>
+      <div class="edu-card fade-in">
+        <div class="edu-degree">Intermediate (PCM)</div>
+        <div class="edu-school">Ursuline Convent Sr. Sec. School, Greater Noida</div>
+        <div class="edu-period">2021 — 2022</div>
+      </div>
+      <div class="cert-card fade-in">
+        <div class="cert-icon">☁️</div>
+        <div class="cert-title">Generative AI Virtual Internship (10 weeks)</div>
+        <div class="cert-org">AICTE & Google Cloud · EduSkills</div>
+      </div>
+      <div class="cert-card fade-in">
+        <div class="cert-icon">🏆</div>
+        <div class="cert-title">Hackastra Finalist</div>
+        <div class="cert-org">NIT Durgapur National Hackathon</div>
+      </div>
+      <div class="cert-card fade-in">
+        <div class="cert-icon">🤖</div>
+        <div class="cert-title">IBM AI Fundamentals</div>
+        <div class="cert-org">IBM SkillsBuild</div>
+      </div>
+      <div class="cert-card fade-in">
+        <div class="cert-icon">☕</div>
+        <div class="cert-title">Python Essentials 1, 2 · Cisco</div>
+        <div class="cert-org">Cisco Networking Academy</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-label fade-in" style="text-align:center">Let's Connect</div>
+    <h2 class="section-title fade-in" style="text-align:center">Open to <span>AI/ML</span> roles.</h2>
+    <p class="fade-in" style="color:var(--muted); max-width:480px; margin:0 auto; text-align:center; line-height:1.7; font-size:15px;">
+      Recent AI & Data Science graduate looking to build production-grade ML systems. If you're working on something challenging, let's talk.
+    </p>
+    <div class="contact-grid fade-in">
+      <a href="mailto:vanshajxrawat@gmail.com" class="contact-chip">
+        <span class="contact-chip-icon">✉️</span>
+        vanshajxrawat@gmail.com
+      </a>
+      <a href="https://www.linkedin.com/in/vanshaj-rawat-7a5149205/" target="_blank" class="contact-chip">
+        <span class="contact-chip-icon">💼</span>
+        linkedin.com/in/vanshaj-rawat
+      </a>
+      <a href="https://github.com/Vanshajrawat" target="_blank" class="contact-chip">
+        <span class="contact-chip-icon">🐙</span>
+        github.com/Vanshajrawat
+      </a>
+      <a href="tel:+919310476956" class="contact-chip">
+        <span class="contact-chip-icon">📱</span>
+        +91 93104 76956
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Built with code · <span>Vanshaj Rawat</span> · 2026
+</footer>
+
+<script>
+/* ── NEURAL CANVAS ── */
+const canvas = document.getElementById('neural-canvas');
+const ctx = canvas.getContext('2d');
+let W, H, nodes = [], mouse = { x: -999, y: -999 };
+
+function resize() {
+  W = canvas.width = window.innerWidth;
+  H = canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', () => { resize(); });
+
+function initNodes() {
+  nodes = [];
+  const count = Math.floor((W * H) / 14000);
+  for (let i = 0; i < count; i++) {
+    nodes.push({
+      x: Math.random() * W, y: Math.random() * H,
+      vx: (Math.random() - 0.5) * 0.35,
+      vy: (Math.random() - 0.5) * 0.35,
+      r: Math.random() * 1.8 + 0.8
+    });
+  }
+}
+initNodes();
+
+canvas.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+canvas.addEventListener('mouseleave', () => { mouse.x = -999; mouse.y = -999; });
+
+function draw() {
+  ctx.clearRect(0, 0, W, H);
+  const maxDist = 160, mouseR = 200;
+
+  for (let n of nodes) {
+    n.x += n.vx; n.y += n.vy;
+    if (n.x < 0 || n.x > W) n.vx *= -1;
+    if (n.y < 0 || n.y > H) n.vy *= -1;
+
+    // Mouse repulsion
+    const dx = n.x - mouse.x, dy = n.y - mouse.y;
+    const md = Math.sqrt(dx*dx + dy*dy);
+    if (md < mouseR) {
+      const force = (mouseR - md) / mouseR * 0.6;
+      n.vx += (dx / md) * force;
+      n.vy += (dy / md) * force;
+      const speed = Math.sqrt(n.vx*n.vx + n.vy*n.vy);
+      if (speed > 2) { n.vx = (n.vx/speed)*2; n.vy = (n.vy/speed)*2; }
+    }
+  }
+
+  for (let i = 0; i < nodes.length; i++) {
+    for (let j = i + 1; j < nodes.length; j++) {
+      const dx = nodes[i].x - nodes[j].x, dy = nodes[i].y - nodes[j].y;
+      const d = Math.sqrt(dx*dx + dy*dy);
+      if (d < maxDist) {
+        const alpha = (1 - d / maxDist) * 0.4;
+        ctx.beginPath();
+        ctx.moveTo(nodes[i].x, nodes[i].y);
+        ctx.lineTo(nodes[j].x, nodes[j].y);
+        ctx.strokeStyle = `rgba(0,229,255,${alpha})`;
+        ctx.lineWidth = 0.6;
+        ctx.stroke();
+      }
+    }
+    // Draw node
+    ctx.beginPath();
+    ctx.arc(nodes[i].x, nodes[i].y, nodes[i].r, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(0,229,255,0.6)';
+    ctx.fill();
+  }
+
+  requestAnimationFrame(draw);
+}
+draw();
+
+/* ── SCROLL FADE ── */
+const faders = document.querySelectorAll('.fade-in');
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 60);
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+faders.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
